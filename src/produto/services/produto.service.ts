@@ -34,4 +34,13 @@ export class ProdutoService {
       },
     });
   }
+
+  async create(produto: Produto): Promise<Produto> {
+    return await this.produtoRepository.save(produto);
+  }
+
+  async update(produto: Produto): Promise<Produto> {
+    await this.findById(produto.id);
+    return await this.produtoRepository.save(produto);
+  }
 }
