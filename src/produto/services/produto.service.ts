@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 import { Produto } from '../entities/produto.entity';
 
 @Injectable()
@@ -25,5 +25,13 @@ export class ProdutoService {
       throw new HttpException('Produto Indisponivel!', HttpStatus.NOT_FOUND);
 
     return produto;
+  }
+
+  async findAllByName(nome: string): Promise<Produto[]> {
+    return await this.produtoRepository.find({
+      where: {
+        nome: ILike(`%${nome}%`),
+      },
+    });
   }
 }
