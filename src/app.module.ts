@@ -12,7 +12,7 @@ import { CategoriaModule } from './categoria/categoria.module';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: '95095100',
+      password: '',
       database: 'db_lojadegames',
       entities: [Produto, Categoria],
       synchronize: true,
