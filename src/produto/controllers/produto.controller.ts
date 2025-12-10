@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpCode,
   HttpStatus,
@@ -46,5 +47,11 @@ export class ProdutoController {
   @HttpCode(HttpStatus.OK)
   update(@Body() produto: Produto): Promise<Produto> {
     return this.produtoService.update(produto);
+  }
+
+  @Delete('/:id')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  delete(@Param('id', ParseIntPipe) id: number){
+    return this.produtoService.delete(id);
   }
 }
